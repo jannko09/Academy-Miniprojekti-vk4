@@ -2,6 +2,17 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
   body
-    block content
+    //- Navbar
+    include navbar.pug
+
+    //- Content Here
+    div.container
+      block content
+
+    //- Footer here
+    include footer.pug
