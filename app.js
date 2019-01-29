@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+var fs = require('fs');
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
@@ -27,8 +28,6 @@ app.use(session({
     maxAge: 60000000               // 100min
    },
 }));
-
-
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);
