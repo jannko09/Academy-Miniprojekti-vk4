@@ -1,0 +1,69 @@
+[{
+	"email": "testi@testi.com",
+	"name": "Testi Testaaja",
+	"id": 1,
+	"created": "2011-10-05T14:48:00.000Z",
+	"project": [{
+		"name": "project1",
+		"id": 1,
+		"color": "b4b4b4",
+		"status": 0,
+		"creator": 1,
+		"created": "2011-10-05T14:48:00.000Z",
+		"deadline": "2020-10-05T14:48:00.000Z",
+		"description": "Tässä projektissa tehdään jotain kivaa :)",
+		"team": [1, 2],
+		"task": [{
+			"2019-01-29": [{
+				"name": "task1",
+				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
+				"status": 0
+			}, {
+				"name": "task2",
+				"description": "Tässä tehtävässä tehdään jotain super kivaa :)",
+				"status": 0
+			}]
+		}, {
+			"2019-01-30": [{
+				"name": "task3",
+				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
+				"status": 0
+			}, {
+				"name": "task4",
+				"description": "Tässä tehtävässä tehdään jotain super kivaa :)",
+				"status": 0
+			}]
+		}]
+	}, {
+		"name": "project2",
+		"id": 2,
+		"color": "e4e4e4",
+		"status": 0,
+		"creator": 1,
+		"created": "2011-10-05T14:48:00.000Z",
+		"deadline": "2020-10-05T14:48:00.000Z",
+		"description": "Tässä projektissa tehdään jotain kivaa :)",
+		"team": [1, 2, 3],
+		"task": [{
+			"2019-01-29": [{
+				"name": "task1",
+				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
+				"status": 0
+			}, {
+				"name": "task2",
+				"description": "Tässä tehtävässä tehdään jotain super kivaa :)",
+				"status": 0
+			}]
+		}, {
+			"2019-01-30": [{
+				"name": "task3",
+				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
+				"status": 0
+			}, {
+				"name": "task4",
+				"description": "Tässä tehtävässä tehdään jotain super kivaa :)",
+				"status": 0
+			}]
+		}]
+	}]
+}]

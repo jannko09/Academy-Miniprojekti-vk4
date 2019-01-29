@@ -23,7 +23,7 @@ footer{
   height: 300px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap:
+  flex-wrap: nowrap;
 }
 
 .left{
