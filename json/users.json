@@ -3,7 +3,7 @@
 	"name": "Testi Testaaja",
 	"id": 1,
 	"created": "2011-10-05T14:48:00.000Z",
-	"project": [{
+	"projects": [{
 		"name": "project1",
 		"id": 1,
 		"color": "b4b4b4",
@@ -13,8 +13,9 @@
 		"deadline": "2020-10-05T14:48:00.000Z",
 		"description": "Tässä projektissa tehdään jotain kivaa :)",
 		"team": [1, 2],
-		"task": [{
-			"2019-01-29": [{
+		"dates": [{
+            "date": "2019-01-29",
+            "tasks": [{
 				"name": "task1",
 				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
 				"status": 0
@@ -24,7 +25,8 @@
 				"status": 0
 			}]
 		}, {
-			"2019-01-30": [{
+            "date": "2019-01-30",
+            "tasks": [{
 				"name": "task3",
 				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
 				"status": 0
@@ -44,8 +46,9 @@
 		"deadline": "2020-10-05T14:48:00.000Z",
 		"description": "Tässä projektissa tehdään jotain kivaa :)",
 		"team": [1, 2, 3],
-		"task": [{
-			"2019-01-29": [{
+		"dates": [{
+            "date": "2019-01-29",
+            "tasks": [{
 				"name": "task1",
 				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
 				"status": 0
@@ -55,7 +58,8 @@
 				"status": 0
 			}]
 		}, {
-			"2019-01-30": [{
+            "date": "2019-01-30",
+            "tasks": [{
 				"name": "task3",
 				"description": "Tässä tehtävässä tehdään jotain kivaa :)",
 				"status": 0
