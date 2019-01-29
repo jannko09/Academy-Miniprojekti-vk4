@@ -45,3 +45,19 @@ footer{
 .right-bottom{
   background-color: red;
 }
+
+.taskboard {
+  border:solid;
+  width:300px;
+  height: 200px;
+  padding: 10px;
+}
+
+h3 {
+  text-align:center;
+}
+
+#tasksSection {
+  display: flex; 
+  flex-direction: column;
+}
