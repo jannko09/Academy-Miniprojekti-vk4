@@ -1,8 +1,47 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 a {
   color: #00B7FF;
+}
+
+.container{
+  flex: 1 0 auto;
+}
+
+footer{
+  flex-shrink: 0;
+  border-top: 1px solid #eee;
+}
+
+.flex{
+  margin-top: 50px;
+  height: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.left{
+  width: 20%;
+  background-color: #f5f5f5;
+}
+
+.middle{
+  width: 30%;
+}
+
+.right{
+  width: 50%;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-bottom{
+  background-color: red;
 }
