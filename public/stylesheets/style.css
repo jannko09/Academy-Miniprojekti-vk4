@@ -55,9 +55,11 @@ footer{
 
 /* JANNE */
 
+
 .visibility {
   visibility:visible !important;
 }
+
 
 body {
   font-family: 'KoHo', sans-serif;
@@ -129,6 +131,7 @@ h3 {
   display: flex;
   flex-direction: column;
   visibility:hidden;
+
 }
 
 #defineNewTaskButton, #addNewTaskButton {

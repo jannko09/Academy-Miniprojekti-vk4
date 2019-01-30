@@ -1,3 +1,4 @@
+
 //NIKO
 $(function () {
 $('#loginSubmit').on('click', function (event) {
@@ -32,7 +33,6 @@ function login(username, password) {
 }
 
 //JANNE
-
     var currentTime = new Date();
     var month = ('0' + (currentTime.getMonth() + 1)).slice(-2);
     console.log(month);
@@ -145,7 +145,9 @@ function login(username, password) {
     });
   
     $('#myList').click(function (e) {
+
         $("#tasksSection").addClass("visibility");
+
 
         $(e.target).siblings().removeClass("Tablebold");
 
@@ -225,6 +227,7 @@ function dragStop(event) {
     event.preventDefault();
     var data = JSON.parse(event.dataTransfer.getData("json"));
     var statusid = event.target.id;
+
     var taskChangeinfo = {status: statusid, id: data.id, name: data.content};
     console.log(taskChangeinfo);
     if (event.target.id == "-1") {
@@ -235,6 +238,7 @@ function dragStop(event) {
         $('#' + data.id).appendTo($("#" + statusid))
     }
     //post to server info on task id, target and content.
+
     var json = JSON.stringify(taskChangeinfo);
     var settings = {
       "async": true,
@@ -253,6 +257,7 @@ function dragStop(event) {
     $.ajax(settings).done(function (response) {
       console.log('ok!');
     });
+
 } 
     
 
