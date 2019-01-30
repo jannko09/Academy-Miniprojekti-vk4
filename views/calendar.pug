@@ -22,7 +22,6 @@ block content
    //-div.middle
      //-p Middle
    div.right
-     input#defineNewTaskButton(type='button', value='Add new task')
      #popup
        h1 Add new task
        |         Project number:
@@ -39,6 +38,8 @@ block content
        br
        input#addNewTaskButton(type='button', value='Add')
      #tasksSection
+       input#defineNewTaskButton(type='button', value='Add new task')
+
        h3 Trash
        #-1.trash.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
          

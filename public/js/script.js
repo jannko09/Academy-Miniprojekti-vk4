@@ -1,6 +1,38 @@
-//JANNE
-//JANNE
+
+//NIKO
 $(function () {
+$('#loginSubmit').on('click', function (event) {
+  event.preventDefault();
+  var $username = $('#loginUser').val();
+  var $password = $('#loginPassword').val();
+  login($username, $password);
+});
+function login(username, password) {
+  var login = { email: username, password: password };
+  var json = JSON.stringify(login);
+  console.log(json);
+  $.ajax({
+      "async": true,
+      "crossDomain": true,
+      "url": "/api/login",
+      "method": "POST",
+      "headers": {
+          "accept": "application/json",
+          "Content-Type": "application/json",
+          "cache-control": "no-cache"
+      },
+      "processData": false,
+      "data": json,
+  }).done(function (response) {
+      if (response === true) {
+          window.location.replace("/calendar");
+      } else {
+          alert('Väärä käyttäjä tai salasana');
+      }
+  });
+}
+
+//JANNE
     var currentTime = new Date();
     var month = ('0' + (currentTime.getMonth() + 1)).slice(-2);
     console.log(month);
@@ -114,6 +146,9 @@ $(function () {
   
     $('#myList').click(function (e) {
 
+        $("#tasksSection").addClass("visibility");
+
+
         $(e.target).siblings().removeClass("Tablebold");
 
         $(e.target).addClass("Tablebold");
@@ -192,7 +227,8 @@ function dragStop(event) {
     event.preventDefault();
     var data = JSON.parse(event.dataTransfer.getData("json"));
     var statusid = event.target.id;
-    var taskChangeinfo = {status: statusid, id: data.id, name: data.content}
+
+    var taskChangeinfo = {status: statusid, id: data.id, name: data.content};
     console.log(taskChangeinfo);
     if (event.target.id == "-1") {
         $('#' + data.id).remove();
@@ -202,9 +238,26 @@ function dragStop(event) {
         $('#' + data.id).appendTo($("#" + statusid))
     }
     //post to server info on task id, target and content.
-    $.post("./api/tasks/:id", taskChangeinfo, function(response) {    
-        console.log(response);
-    })
+
+    var json = JSON.stringify(taskChangeinfo);
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:3000/api/update",
+      "method": "PUT",
+      "headers": {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "cache-control": "no-cache",
+      },
+      "processData": false,
+      "data": json
+    }
+    
+    $.ajax(settings).done(function (response) {
+      console.log('ok!');
+    });
+
 } 
     
 
