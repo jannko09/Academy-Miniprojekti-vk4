@@ -108,4 +108,39 @@ router.post('/tasks', function (req, res) {
   res.send(users);
 });
 
+router.put('/update', function (req, res) {
+  let task = req.body; // status, id ,name
+  let userID = 1;     
+  let users = fs.readFileSync('./json/users.json');
+  users = JSON.parse(users);
+
+  for (let i in users) {
+    if (users[i].id === userID) {
+      userIndex = i;
+      break;
+    }
+  };
+  
+  let projects = users[userIndex].projects;
+  for (let project in projects) {
+    for (let d in projects[project].dates) {
+      for (let t in projects[project].dates[d].tasks) {
+        if (projects[project].dates[d].tasks[t].id === task.id){
+          //IF id = -1 DELETE
+          
+          //ELSE
+          users[userIndex].projects[project].dates[d].tasks[t].status = task.status;
+        }
+      }
+    }
+  }
+
+  var data = JSON.stringify(users);
+  fs.writeFileSync('./json/users.json', data, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+  res.send(users);
+});
+
 module.exports = router;

@@ -1,15 +1,55 @@
 extends layout
 
 block content
-  div.flex
-    div.left
-      p Left
-    div.middle
-      p Middle
-    div.right
-      div.right-top
-        p Right-top
-      div.right-bottom
-        p Right-bottom
-
-  
+ div.flex
+   div.left
+     div
+      table#kalenteri
+        thead
+          tr
+            //- .rowNum clone() to a separate list?
+            th Ma
+            th Ti
+            th Ke
+            th To
+            th Pe
+            th La
+            th Su
+        tbody#kalenteriContent
+      
+      h1#header
+      #myList
+   //-div.middle
+     //-p Middle
+   div.right
+     
+     #popup
+       h1 Add new task
+       |         Project number:
+       input#taskPro(type='number')
+       br
+       br
+       |         Task name:
+       input#taskName(type='text')
+       br
+       br
+       |         Task description:
+       input#taskDes(type='text')
+       br
+       br
+       input#addNewTaskButton(type='button', value='Add')
+     #tasksSection
+       input#defineNewTaskButton(type='button', value='Add new task')
+       h3 Trash
+       #-1.trash.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+         
+         #task_removed_popup  Task removed
+       h3 All
+       #0.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+         
+         p#5(draggable='true', ondragstart='dragStart(event)', height='30px', width='30px') TASK 1
+       h3 Working
+       #1.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+       h3 Done  
+       #2.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+         
