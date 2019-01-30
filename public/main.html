@@ -27,14 +27,18 @@
     </div>
 
     <div id = "tasksSection">
-        <div class = "taskboard" id = "0" ondragover = "dragMove(event)" ondrop="dragStop(event)">
+        <div class = "trash taskboard" id = "-1" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
+            <h3>Trash</h3>
+            <div id = "task_removed_popup"> Task removed </div>
+        </div>
+        <div class = "taskboard" id = "0" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
             <h3>All</h3>
             <p draggable = "true" id = "5" ondragstart = "dragStart(event)" height="30px" width = "30px">TASK 1</p>
         </div>
-        <div class = "taskboard" id = "1" ondragover = "dragMove(event)" ondrop="dragStop(event)">
+        <div class = "taskboard" id = "1" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
             <h3>Working</h3>
         </div>
-        <div class = "taskboard" id = "2" ondragover = "dragMove(event)" ondrop="dragStop(event)">
+        <div class = "taskboard" id = "2" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
             <h3>Done</h3>
         </div>
     </div>

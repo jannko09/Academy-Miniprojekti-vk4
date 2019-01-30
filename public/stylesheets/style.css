@@ -59,6 +59,14 @@ h3 {
   text-align:center;
 }
 
+.trash {
+  border:solid;
+  border-radius: 50px;
+  background-color:gray;
+  height: 50px;
+
+}
+
 #tasksSection {
   display: flex; 
   flex-direction: column;
@@ -72,7 +80,7 @@ h3 {
 
 }
 
-#popup {
+#popup, #task_removed_popup{
   display:none;
 }
 

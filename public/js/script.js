@@ -2,25 +2,31 @@
 //Drag and drop tasks
 
 function dragStart(event) {
-    event.dataTransfer.setData("text", event.target.id);
-}
-
-function dragMove(event) {
-     event.preventDefault();
+    var taskid = event.target.id;
+    var content = $("#" + taskid).html();
+    var data = '{"id":' + taskid + ', "content":"' + content + '"}';
+    event.dataTransfer.setData("json", data);
 }
 
 function dragStop(event) {
     event.preventDefault();
-    var taskID = event.dataTransfer.getData("text");
-    var statusID = event.target.id;
-    $('#' + taskID).appendTo($("#" + statusID))
-    var taskChangeinfo = {status: statusID, task: taskID}
+    var data = JSON.parse(event.dataTransfer.getData("json"));
+    var statusid = event.target.id;
+    var taskChangeinfo = {status: statusid, id: data.id, name: data.content}
     console.log(taskChangeinfo);
-    //post to server: info on task id (taskID) and the target where the task was moved (status).
-    $.post("/api/tasks/:id", taskChangeinfo, function(response) {    
+    if (event.target.id == "-1") {
+        $('#' + data.id).remove();
+        $("#task_removed_popup").popup("show");
+    }
+    else {
+        $('#' + data.id).appendTo($("#" + statusid))
+    }
+    //post to server info on task id, target and content.
+    $.post("./api/tasks/:id", taskChangeinfo, function(response) {    
         console.log(response);
     })
-}
+} 
+    
 
 // Add new tasks in popup widow
 
@@ -41,8 +47,8 @@ function dragStop(event) {
          let newTaskinfo = {status: defaultStatus, name: name, projectID: projectID, date: date,  description: description} 
          $("#popup").popup("hide");
 
-        // post to server: new task info (status, name projectID, date, and description)
-        $.post("/api/tasks", newTaskinfo, function(response) {  
+        // post to server new task info on status, name projectID, date, and description.
+        $.post("./api/tasks", newTaskinfo, function(response) {  
             let newtaskElement = document.createElement("P"); 
             newtaskElement.append(response.name); 
             newtaskElement.setAttribute('ondragstart', 'dragStart(event)');
