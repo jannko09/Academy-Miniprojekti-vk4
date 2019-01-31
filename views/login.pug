@@ -1,12 +1,11 @@
 extends layout
 
 block content
- h1(class="text-center")= title
- form(id="login")
+ h1(class="text-center") Welcome!
+ form(id="login" class="text-center")
    input(id="loginUser" type="email" placeholder="email")
    br
    input(id="loginPassword" type="password" placeholder="password")
    br
-   button(id="loginSubmit") Kirjaudu
- a(href="/users/signup")
-   p(class="text-center") Rekisteröidy
+   button(id="loginSubmit") Login
+

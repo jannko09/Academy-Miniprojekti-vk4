@@ -161,7 +161,7 @@
   padding-top:10px;
   font-size: 45px;
   background-color:rgb(202, 196, 196);
-  width: 600px;
+  width: 350px;
   height: 60px;
   border-radius:30px;
   box-shadow: 5px 5px;
@@ -196,7 +196,7 @@
 
 
 
- #defineNewTaskButton, #addNewTaskButton {
+ #defineNewTaskButton, #addNewTaskButton, #defineNewProjectButton, #addNewProjectButton {
   border-radius: 5px;
   width: 150px;
   height:60px;
@@ -209,9 +209,11 @@
   border:solid 1px;
  }
 
+.text-center {
+  text-align: center;
+}
 
-
- #popup, #task_removed_popup{
+ #popup, #popup2, #task_removed_popup{
   display:none;
  }
 

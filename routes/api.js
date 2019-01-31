@@ -5,6 +5,8 @@ var clientTask = require('../modules/clienttask');
 var ClientTask = clientTask.ClientTask;
 var task = require('../modules/task');
 var Task = task.Task;
+var project = require('../modules/project');
+var Project = project.Project;
 
 /* GET user's all projects */
 router.get('/projects/all', function (req, res) {
@@ -46,15 +48,15 @@ router.get('/projects/:startDate&:endDate', function (req, res) {
   users = JSON.parse(users);
 
   //userIndex
-  for (let i of users) {
-    if (i.id === userID) {
+  for (let i in users) {
+    if (users[i].id == userID) {
       var user = i;
       break;
     }
   };
 
   let taskArray = [];
-  for (let project of user.projects) {
+  for (let project of users[user].projects) {
     for (let day of project.dates) {
       let date = new Date(day.date);
       if (date >= startDate && date <= endDate) {
@@ -70,18 +72,43 @@ router.get('/projects/:startDate&:endDate', function (req, res) {
   res.json(taskArray);
 });
 
+router.post('/newproject', function (req, res) {
+  let userID = req.session.userid;
+
+  let users = fs.readFileSync('./json/users.json');
+  users = JSON.parse(users);
+
+  let newProject = req.body; // name date desccription
+  for (let i in users) {
+    if (users[i].id == userID) {
+      var user = i;
+      break;
+    }
+  };
+
+  users[user].projects.push(new Project(newProject.name, newProject.description, newProject.date, (users[user].projects.length+1), userID));
+  
+  var data = JSON.stringify(users);
+  fs.writeFileSync('./json/users.json', data, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+
+  res.send(users);
+});
+
 /* POST new task */
 router.post('/tasks', function (req, res) {
-
+  console.log('TULEEKO PYYNTÖ?')
   // Get user id from session info
-  let userID = req.session.userid;                               // change later (req.session.userID)
+  let userID = req.session.userid;
+                                 // change later (req.session.userID)
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
 
   //User Index
   for (let i in users) {
     if (users[i].id === userID) {
-      var user = users[i];
       userIndex = i;
       break;
     }
@@ -89,7 +116,7 @@ router.post('/tasks', function (req, res) {
 
   //Project index
   let projects = users[userIndex].projects;
-  let projectIndex = -1;
+  let projectIndex = -1; // what is this?
 
   // projectId parser
   let pID = req.body.projectID.split('-');
