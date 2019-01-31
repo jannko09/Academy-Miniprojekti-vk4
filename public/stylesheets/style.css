@@ -1,155 +1,196 @@
-/* NIKO */
-
-
 *{
   margin: 0;
   padding: 0;
-}
-
-body {
+ }
+ 
+ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-a {
+ }
+ 
+ a {
   color: #00B7FF;
-}
-
-.container {
+ }
+ 
+ .content {
   flex: 1 0 auto;
-}
-
-footer{
+  margin-top: 20px;
+ }
+ 
+ footer{
   flex-shrink: 0;
   border-top: 1px solid #eee;
-}
+ }
 
-.flex{
+ .navbar{
+   margin: 0;
+ }
+ 
+ .flex{
   /*margin-top: 50px;
   height: 300px;*/
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-}
+ }
 
-.left{
-  width: 50%;
+ .space-between{
+  justify-content: space-between;
 }
-
-/*.middle{
+ 
+ .left{
+  width: 20%;
+ }
+ 
+ /*.middle{
   width: 30%;
-}*/
-
-.right{
-  width: 50%;
+ }*/
+ 
+ .right{
+  width: 80%;
   display: flex;
+  visibility:hidden;
   flex-direction: column;
-}
-
-.right-bottom{
+ }
+ 
+ .right-bottom{
   background-color: red;
-}
-
-/* JANNE */
-
-
-.visibility {
+ }
+ 
+ /* JANNE */
+ 
+ 
+ .visibility {
   visibility:visible !important;
-}
-
-
-body {
+ }
+ 
+ 
+ body {
   font-family: 'KoHo', sans-serif;
-}
-
-#kalenteri{
+ }
+ 
+ #kalenteri{
   width: 60% auto;
-  table-layout: fixed ;
+  table-layout: fixed;
   background-color: #fff;
   border-radius: 1em;
   margin: 2em 0;
-  width: 208px;
-  height: 136.8px;
-}
-
-th{
+  width: 100%;
+  text-align: center;
+  height: 150px;
+ }
+ 
+ th{
   font-size: 0.7em;
-  text-align: left;
+  text-align: center;
   background-color: black;
   color: white;
   padding: 0.3em;
-}
-
-tr:nth-child(even){
+ }
+ 
+ tr:nth-child(even){
   background-color: #f5f5f5;
-}
-
-td{
+ }
+ 
+ td{
   font-size: 0.7em;
-  text-align: left;
+  /*text-align: left;*/
   padding: 0.3em;
-}
-
-.grey-month{
+ }
+ 
+ .grey-month{
   color: #ccc;
-}
-
-.Tablebold {
+ }
+ 
+ .Tablebold {
   font-weight: bold;
-  font-size: 25px;
+  font-size: 20px;
   text-decoration: underline;
-}
-
-/* SATU */
-
-.taskboard {
-  border:solid;
-  width: 100%;
-  height: 150px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: lightgoldenrodyellow;
-}
-
-h3 {
-  text-align:center;
-  margin: 0;
-}
-
-.trash {
-  border:solid;
-  border-radius: 50px;
-  background-color:gray;
-  height: 50px;
-
-}
-
-#tasksSection {
+ }
+ 
+ /* SATU */
+ 
+ .taskboard {
   display: flex;
   flex-direction: column;
-  visibility:hidden;
+  border:solid;
+  width: 250px;
+  min-height: 250px;
+  padding: 20px;
+  margin:20px;
+  border-radius: 5px;
+  box-shadow: 10px 10px;
+  font-size: 20px;
+ }
+ 
+ 
+ #\30{
+  background-color: #FF69B4;
+ }
+ 
+ #\31{
+  background-color: #00BFFF;
+ 
+ }
+ #\32{
+  background-color:yellow;
+ }
+ 
+ #tasktrashandnew {
+  padding:20px;
+  margin:20px;
+ }
+ 
+ 
+ 
+ h3 {
+  display: inline;
+  text-align: center;
+  margin: 0;
+ }
+ 
+ .trashvisibility {
+ visibility:visible !important;
+ }
+ 
+ .trash {
+  font-size: 50px;
+  }
 
-}
+ 
+ #tasksSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  text-align: center;
+ 
+ }
 
-#defineNewTaskButton, #addNewTaskButton {
+ .taskboard{
+  text-align: left;
+ }
+ 
+ 
+ 
+ #defineNewTaskButton, #addNewTaskButton {
   border-radius: 5px;
   width: 100px;
   height: 50px;
   background-color:lightcyan;
-
-}
-
-#popup, #task_removed_popup{
+ 
+ }
+ 
+ #popup, #task_removed_popup{
   display:none;
-}
-
-.popup_content {
+ }
+ 
+ .popup_content {
   margin: 50px;
   padding: 50px;
   border: solid;
   background: white;
   border-radius: 5px;
-}
+ }
