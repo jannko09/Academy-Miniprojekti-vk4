@@ -6,6 +6,7 @@ class ClientTask {
         this.projectTeam = project.team;
         this.taskDate = day.date;
         this.taskName = task.name;
+        this.taskId = task.id;
         this.taskDescription = task.description;
         this.taskStatus = task.status;
     }

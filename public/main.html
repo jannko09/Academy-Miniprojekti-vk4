@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/style.css" />
+   
+</head>
+<body>
+
+    <input id = "defineNewTaskButton" type="button" value= "Add new task">
+
+    <div id = "popup">
+        <h1>Add new task</h1>
+        Project number: <input type = "number" id = "taskPro">
+        </br>
+        </br>
+        Task name: <input type = "text" id = "taskName" >
+        </br>
+        </br>
+        Task description: <input type = "text" id = "taskDes">
+        </br>
+        </br>   
+        <input id = "addNewTaskButton" type = "button"  value = "Add">
+    </div>
+
+    <div id = "tasksSection">
+        <div class = "trash taskboard" id = "-1" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
+            <h3>Trash</h3>
+            <div id = "task_removed_popup"> Task removed </div>
+        </div>
+        <div class = "taskboard" id = "0" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
+            <h3>All</h3>
+            <p draggable = "true" id = "5" ondragstart = "dragStart(event)" height="30px" width = "30px">TASK 1</p>
+        </div>
+        <div class = "taskboard" id = "1" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
+            <h3>Working</h3>
+        </div>
+        <div class = "taskboard" id = "2" ondragover = "event.preventDefault();" ondrop="dragStop(event)">
+            <h3>Done</h3>
+        </div>
+    </div>
+   
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- jQuery Popup Overlay plugin for popups:  -->
+    <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/gh-pages/jquery.popupoverlay.js"></script>
+    <script type="text/javascript"  src="js/script.js"></script>
+</body>
+</html>
