@@ -233,9 +233,11 @@ function dragStop(event) {
     if (event.target.id == "-1") {
         $('#' + data.id).remove();
         $("#task_removed_popup").popup("show");
+
     }
     else {
-        $('#' + data.id).appendTo($("#" + statusid))
+        $('#' + data.id).appendTo($("#" + statusid));
+
     }
     //post to server info on task id, target and content.
 

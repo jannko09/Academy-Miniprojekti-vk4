@@ -143,4 +143,39 @@ router.put('/update', function (req, res) {
   res.send(users);
 });
 
+router.delete('/delete/:id', function (req, res) {
+  let id = req.params.id;
+  console.log(id);
+  let userID = 1;     
+  let users = fs.readFileSync('./json/users.json');
+  users = JSON.parse(users);
+
+  for (let i in users) {
+    if (users[i].id === userID) {
+      userIndex = i;
+      break;
+    }
+  };
+  
+  let projects = users[userIndex].projects;
+  for (let project in projects) {
+    for (let d in projects[project].dates) {
+      for (let t in projects[project].dates[d].tasks) {
+        if (projects[project].dates[d].tasks[t].id == id){
+          users[userIndex].projects[project].dates[d].tasks.splice(t, 1);
+        } else {
+          console.log('Task id not found... Line 167: api.js')
+        }
+      }
+    }
+  }
+
+  var data = JSON.stringify(users);
+  fs.writeFileSync('./json/users.json', data, function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
+  res.send(users);
+});
+
 module.exports = router;
