@@ -364,6 +364,28 @@ function dragStop(event) {
 
     $("#defineNewTaskButton").on("click", function(){
         $("#popup").popup("show");
+        //Ask current projects from server
+
+       var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/api/projects/all",
+        "method": "GET",
+        "headers": {
+          "cache-control": "no-cache"
+        }
+      }
+
+      $.ajax(settings).done(function (response) {
+        $('#selector').empty();
+        for (project of response) {
+          let option  = document.createElement("OPTION");
+          option.setAttribute('value', project.projectName);
+          option.setAttribute('id', 'project-' + project.projectId); // remember to split at '-'
+          $(option).html(project.projectName);
+          $(option).appendTo($("#selector"));
+        }
+      });
     });
 
     $("#addNewTaskButton").on("click", function(){

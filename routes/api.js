@@ -6,7 +6,7 @@ var ClientTask = clientTask.ClientTask;
 var task = require('../modules/task');
 var Task = task.Task;
 
-/* GET user's all projects and tasks */
+/* GET user's all projects */
 router.get('/projects/all', function (req, res) {
 
   // Get user id from session info
@@ -14,8 +14,24 @@ router.get('/projects/all', function (req, res) {
 
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
-  console.log(users);
-  res.json(users);
+
+  //userIndex
+  for (let i in users) {
+    if (users[i].id === userID) {
+      var user = i;
+      break;
+    }
+  };
+
+  let projects = users[user].projects;
+
+  projectArray = [];
+  for(project of projects){
+    projectArray.push({"projectName":project.name, "projectId": project.id});
+  }
+
+  console.log(projectArray);
+  res.json(projectArray);
 });
 
 /* GET user's all projects and tasks for specific date range */
@@ -29,6 +45,7 @@ router.get('/projects/:startDate&:endDate', function (req, res) {
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
 
+  //userIndex
   for (let i of users) {
     if (i.id === userID) {
       var user = i;
@@ -84,20 +101,25 @@ router.post('/tasks', function (req, res) {
 
   let dates = users[userIndex].projects[projectIndex].dates;
   let index = -1;
+  //let dateArray = [];
   for(let i in dates){
     if(dates[i].date === req.body.date){
       index = i;
+      //add date to dateArray
       break;
     }
   }
 
-  if (index > -1) {
-    users[userIndex].projects[projectIndex].dates[index].tasks.push(new Task(task));
-  } else if (index === -1) {
-    let dailyTasks = { "date": req.body.date, tasks: [] };
-    dailyTasks.tasks.push(new Task(task));
-    users[userIndex].projects[projectIndex].dates.push(dailyTasks);
-  }
+  // loop through each day
+    // *****users[userIndex].projects[projectIndex].dates
+    //if date is ... then
+      if (index > -1) {
+        users[userIndex].projects[projectIndex].dates[index].tasks.push(new Task(task));
+      } else if (index === -1) {
+        let dailyTasks = { "date": req.body.date, tasks: [] };
+        dailyTasks.tasks.push(new Task(task));
+        users[userIndex].projects[projectIndex].dates.push(dailyTasks);
+      }
 
   var data = JSON.stringify(users);
   fs.writeFileSync('./json/users.json', data, function (err) {

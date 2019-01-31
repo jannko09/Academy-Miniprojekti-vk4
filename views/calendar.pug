@@ -10,7 +10,7 @@ block content
         div#monthName
         div#calendar-right
           p &#8594
-      table#kalenteri
+      table#kalenteri.table-hover
         thead
           tr
             //- .rowNum clone() to a separate list?
@@ -30,8 +30,8 @@ block content
    div.right
       #popup
         h1 Add new task
-        |         Project number:
-        input#taskPro(type='number')
+        |         Project:
+        select#selector
         br
         br
         |         Task name:
