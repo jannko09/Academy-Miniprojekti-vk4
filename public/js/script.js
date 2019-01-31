@@ -314,13 +314,27 @@ function dragStop(event) {
     if (event.target.id == "-1") {
         $('#' + data.id).remove();
         $("#task_removed_popup").popup("show");
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "http://localhost:3000/api/delete/" + taskChangeinfo.id, // replace "id" with correct variable name for the current task id to be deleted.
+          "method": "DELETE",
+          "headers": {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "cache-control": "no-cache",
+          },
+          "processData": false,
+          "data": ""
+         }
+         
+         $.ajax(settings).done(function (response) {
+          console.log(response); // some response
+         });
     }
     else {
-        $('#' + data.id).appendTo($("#" + statusid))
-    }
-    //post to server info on task id, target and content.
-
-    var json = JSON.stringify(taskChangeinfo);
+        $('#' + data.id).appendTo($("#" + statusid));
+        var json = JSON.stringify(taskChangeinfo);
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -339,6 +353,10 @@ function dragStop(event) {
       console.log('ok!');
     });
 
+    }
+    //post to server info on task id, target and content.
+
+    
 } 
     
 
