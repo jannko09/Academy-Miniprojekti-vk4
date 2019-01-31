@@ -1,0 +1,12 @@
+extends layout
+
+block content
+ h1(class="text-center")= title
+ form(id="login")
+   input(id="loginUser" type="email" placeholder="email")
+   br
+   input(id="loginPassword" type="password" placeholder="password")
+   br
+   button(id="loginSubmit") Kirjaudu
+ a(href="/users/signup")
+   p(class="text-center") Rekisteröidy

@@ -38,7 +38,7 @@ $(function () {
     monthlyCalendar(month, year);
     $('#monthName').html(monthName(month, year));
   });
-
+  // LOGIN CODE
   $('#loginSubmit').on('click', function (event) {
     event.preventDefault();
     var $username = $('#loginUser').val();
@@ -52,7 +52,7 @@ $(function () {
     $.ajax({
         "async": true,
         "crossDomain": true,
-        "url": "/api/login",
+        "url": "http://localhost:3000/api/login",
         "method": "POST",
         "headers": {
             "accept": "application/json",
@@ -60,10 +60,10 @@ $(function () {
             "cache-control": "no-cache"
         },
         "processData": false,
-        "data": json,
+        "data": json
     }).done(function (response) {
         if (response === true) {
-            window.location.replace("/calendar");
+            window.location.replace("http://localhost:3000/calendar");
         } else {
             alert('Väärä käyttäjä tai salasana');
         }
@@ -391,9 +391,7 @@ function dragStop(event) {
 
     $("#addNewTaskButton").on("click", function(){
         
-
-
-         let projectID = $("#taskPro").val();
+         let projectID = $("#selector").children(":selected").attr("id");
          let name = $("#taskName").val();
          let description = $("#taskDes").val();
          let year = new Date().getFullYear();
@@ -403,7 +401,7 @@ function dragStop(event) {
          let date =  year + "-" + month + "-" + day;
          let defaultStatus = 0;
          //let newTaskinfo = '{"status":' + defaultStatus + ', "name":' + name + ', "projectID":' + parseInt(projectID) + ', "date":' + date + ',  "description":' + description} 
-         let newTaskinfo = {"status": defaultStatus, "name": name, "projectID": parseInt(projectID), "date": etarg[0],  "description": description} 
+         let newTaskinfo = {"status": defaultStatus, "name": name, "projectID": projectID, "date": etarg[0],  "description": description} 
          newTaskinfo = JSON.stringify(newTaskinfo)
          console.log(newTaskinfo);
          $("#popup").popup("hide");

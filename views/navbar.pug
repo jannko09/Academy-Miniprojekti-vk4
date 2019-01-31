@@ -9,9 +9,13 @@
     #navbar-main.navbar-collapse.collapse
       ul.nav.navbar-nav
         li
-          a(href='/calendar/') Calendar
+          if user
+            a(href='/calendar/') Calendar
       ul.nav.navbar-nav.navbar-right
         li
           a(href='https://github.com/AlbertSpoljaric/Miniproject1', target='_blank') View on GitHub
         li
-          a(href='/login') Login
+          if user
+            a(href='/logout') Logout
+          else
+            a(href='/') Login

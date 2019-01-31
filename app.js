@@ -23,10 +23,8 @@ app.use(session({
   secret: 'miniprojekti1',
   resave: true,
   saveUninitialized: true,
-  cookie: {
-    secure: true,
-    maxAge: 60000000               // 100min
-   },
+  cookie: { secure: true },
+  cookie: { maxAge: 60000000 }               // 100min
 }));
 
 app.use('/', indexRouter);

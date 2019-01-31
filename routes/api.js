@@ -10,14 +10,14 @@ var Task = task.Task;
 router.get('/projects/all', function (req, res) {
 
   // Get user id from session info
-  let userID = 1;     // change later (req.session.userID)
-
+  let userID = req.session.userid;     // change later (req.session.userID)
+  console.log(userID);
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
 
   //userIndex
   for (let i in users) {
-    if (users[i].id === userID) {
+    if (users[i].id == userID) {
       var user = i;
       break;
     }
@@ -26,8 +26,8 @@ router.get('/projects/all', function (req, res) {
   let projects = users[user].projects;
 
   projectArray = [];
-  for(project of projects){
-    projectArray.push({"projectName":project.name, "projectId": project.id});
+  for (project of projects) {
+    projectArray.push({ "projectName": project.name, "projectId": project.id });
   }
 
   console.log(projectArray);
@@ -38,7 +38,7 @@ router.get('/projects/all', function (req, res) {
 router.get('/projects/:startDate&:endDate', function (req, res) {
 
   // Get user id from session info
-  let userID = 1;     // change later (req.session.userID)
+  let userID = req.session.userid;     // change later (req.session.userID)
 
   let startDate = new Date(req.params.startDate);
   let endDate = new Date(req.params.endDate);
@@ -74,7 +74,7 @@ router.get('/projects/:startDate&:endDate', function (req, res) {
 router.post('/tasks', function (req, res) {
 
   // Get user id from session info
-  let userID = 1;                               // change later (req.session.userID)
+  let userID = req.session.userid;                               // change later (req.session.userID)
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
 
@@ -90,8 +90,16 @@ router.post('/tasks', function (req, res) {
   //Project index
   let projects = users[userIndex].projects;
   let projectIndex = -1;
-  for(let i in projects){
-    if(projects[i].id === req.body.projectID){
+
+  // projectId parser
+  let pID = req.body.projectID.split('-');
+  console.log(pID);
+  pID = parseInt(pID[1]);
+
+
+
+  for (let i in projects) {
+    if (projects[i].id === pID) {
       projectIndex = i;
       break;
     }
@@ -102,8 +110,8 @@ router.post('/tasks', function (req, res) {
   let dates = users[userIndex].projects[projectIndex].dates;
   let index = -1;
   //let dateArray = [];
-  for(let i in dates){
-    if(dates[i].date === req.body.date){
+  for (let i in dates) {
+    if (dates[i].date === req.body.date) {
       index = i;
       //add date to dateArray
       break;
@@ -111,15 +119,15 @@ router.post('/tasks', function (req, res) {
   }
 
   // loop through each day
-    // *****users[userIndex].projects[projectIndex].dates
-    //if date is ... then
-      if (index > -1) {
-        users[userIndex].projects[projectIndex].dates[index].tasks.push(new Task(task));
-      } else if (index === -1) {
-        let dailyTasks = { "date": req.body.date, tasks: [] };
-        dailyTasks.tasks.push(new Task(task));
-        users[userIndex].projects[projectIndex].dates.push(dailyTasks);
-      }
+  // *****users[userIndex].projects[projectIndex].dates
+  //if date is ... then
+  if (index > -1) {
+    users[userIndex].projects[projectIndex].dates[index].tasks.push(new Task(task));
+  } else if (index === -1) {
+    let dailyTasks = { "date": req.body.date, tasks: [] };
+    dailyTasks.tasks.push(new Task(task));
+    users[userIndex].projects[projectIndex].dates.push(dailyTasks);
+  }
 
   var data = JSON.stringify(users);
   fs.writeFileSync('./json/users.json', data, function (err) {
@@ -132,7 +140,7 @@ router.post('/tasks', function (req, res) {
 
 router.put('/update', function (req, res) {
   let task = req.body; // status, id ,name
-  let userID = 1;     
+  let userID = req.session.userid;
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
 
@@ -142,14 +150,14 @@ router.put('/update', function (req, res) {
       break;
     }
   };
-  
+
   let projects = users[userIndex].projects;
   for (let project in projects) {
     for (let d in projects[project].dates) {
       for (let t in projects[project].dates[d].tasks) {
-        if (projects[project].dates[d].tasks[t].id === task.id){
+        if (projects[project].dates[d].tasks[t].id === task.id) {
           //IF id = -1 DELETE
-          
+
           //ELSE
           users[userIndex].projects[project].dates[d].tasks[t].status = task.status;
         }
@@ -170,10 +178,10 @@ router.put('/update', function (req, res) {
 router.delete('/delete/:id', function (req, res) {
   let id = req.params.id;
   console.log(id);
-  let userID = 1;
+  let userID = req.session.userid;
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);
- 
+
   for (let i in users) {
     if (users[i].id === userID) {
       userIndex = i;
@@ -185,7 +193,7 @@ router.delete('/delete/:id', function (req, res) {
   for (let project in projects) {
     for (let d in projects[project].dates) {
       for (let t in projects[project].dates[d].tasks) {
-        if (projects[project].dates[d].tasks[t].id == id){
+        if (projects[project].dates[d].tasks[t].id == id) {
           users[userIndex].projects[project].dates[d].tasks.splice(t, 1);
         } else {
           console.log('Task id not found... Line 167: api.js')
@@ -201,6 +209,24 @@ router.delete('/delete/:id', function (req, res) {
   });
   res.send(users);
 
- });
+});
+
+router.post('/login', function (req, res, next) {
+  let user = req.body;
+  console.log(user);
+  fs.readFile('./json/users.json', function (err, data) {
+    let personnel = JSON.parse(data);
+    for (var person in personnel) {
+      if (personnel[person].email === user.email && personnel[person].password === user.password) {
+        console.dir('Onnistui');
+        req.session.userid = personnel[person].id;
+        res.send(true);
+        return;
+      }
+    }
+    console.dir('Ei onnistunut');
+    res.send(false);
+  });
+});
 
 module.exports = router;
