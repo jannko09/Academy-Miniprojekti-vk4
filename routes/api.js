@@ -12,7 +12,7 @@ var Project = project.Project;
 router.get('/projects/all', function (req, res) {
 
   // Get user id from session info
-  let userID = req.session.userid;     // change later (req.session.userID)
+  let userID = req.session.userid;    
   console.log(userID);
   let users = fs.readFileSync('./json/users.json');
   users = JSON.parse(users);

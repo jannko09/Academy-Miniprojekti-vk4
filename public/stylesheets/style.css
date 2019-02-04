@@ -108,7 +108,7 @@
  }
 
  .grey-month{
-  color: #ccc;
+  color: #aaa;
  }
 
  .Tablebold {
@@ -120,6 +120,9 @@
 
  #calendar-right, #calendar-left, #kalenteriContent tr, #myList div, .taskboard div {
   cursor: pointer;
+ }
+ #calendar-right, #calendar-left, #monthName {
+   font-size: 30px;
  }
  /* SATU */
 

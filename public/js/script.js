@@ -113,11 +113,18 @@ $(function () {
     for (var i = 1; i <= index; i++) {
       var $td = $('<td>');
       if (i < weekday) {
-        $td.html(k).attr('class', 'grey-month');
+        if (month == 1) {
+          newmonth = '12';
+          newYear = year-1;
+        } else {
+          newmonth = ('0' + (parseInt(month) - 1)).slice(-2);
+          newYear = year;
+        }
+        $td.html(k).attr('class', 'grey-month').attr('id',newmonth+'-'+k+'-'+newYear);
         $tr.append($td);
         k++; index++;
       } else {
-        $td.html(j);
+        $td.html(j).attr('id',month+'-'+j+'-'+year);
         $tr.append($td);
         j++;
       }
@@ -130,13 +137,20 @@ $(function () {
     };
 
     if ((i - 1) % 7 !== 0) {
+      if (month == 12) {
+        newMonth = '01';
+        newYear = year + 1;
+      } else {
+        newMonth = ('0' + (parseInt(month) + 1)).slice(-2);
+        newYear = year;
+      }
       while (i % 7 !== 0) {
         var $td = $('<td>');
-        $td.html(l).attr('class', 'grey-month');
+        $td.html(l).attr('class', 'grey-month').attr('id', newMonth+'-'+l+'-'+newYear);
         l++; i++;
         $tr.append($td);
       }
-      var $td = $('<td>').attr('class', 'grey-month');
+      var $td = $('<td>').attr('class', 'grey-month').attr('id',newMonth+'-'+l+'-'+newYear);
       $td.html(l);
       $tr.append($td);
     }
@@ -181,7 +195,10 @@ $(function () {
         for (let i = 0; i < weekday.length; i++) {
           var node = document.createElement("DIV");
 
-          var weekdaynode = document.createTextNode(year + '-' + month + '-' + dates[i] + ' ' + weekday[i]);
+          targetMonth = $(newID).find("td").eq(i).attr('id');
+          targetMonth = targetMonth.split('-');
+          // update month
+          var weekdaynode = document.createTextNode(targetMonth[2] + '-' + targetMonth[0] + '-' + dates[i] + ' ' + weekday[i]);
 
           node.setAttribute("id", "weekday_id-" + dates[i]);
           node.appendChild(weekdaynode);
@@ -276,7 +293,7 @@ $(function () {
           e.setAttribute('id', task.taskId);
           e.setAttribute('ondragstart', 'dragStart(event)');
           e.setAttribute('draggable', 'true');
-          e.setAttribute('title', task.taskDescription);
+          e.setAttribute('title', 'Project: ' + task.projectName +'\r\nDescription: ' + task.taskDescription);
           if (task.taskStatus == 0) {
             $("#0").append(e);
           } else if (task.taskStatus == 1) {
@@ -439,8 +456,7 @@ $("#addNewTaskButton").on("click", function () {
           e.setAttribute('id', task.taskId);
           e.setAttribute('ondragstart', 'dragStart(event)');
           e.setAttribute('draggable', 'true');
-
-          e.setAttribute('title', task.taskDescription);
+          e.setAttribute('title', 'Project: ' + task.projectName +'\r\nDescription: ' + task.taskDescription); // add to final x2
           
          
       
