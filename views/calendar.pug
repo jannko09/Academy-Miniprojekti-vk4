@@ -3,13 +3,76 @@ extends layout
 block content
   div.flex
     div.left
-      p Left
-    div.middle
-      p Middle
-    div.right
-      div.right-top
-        p Right-top
-      div.right-bottom
-        p Right-bottom
+      div
+        div.flex.space-between
+          div#calendar-left
+            p &#8592
+          div#monthName
+          div#calendar-right
+            p &#8594
+        table#kalenteri
+          thead
+            tr
+              //- .rowNum clone() to a separate list?
+              th Ma
+              th Ti
+              th Ke
+              th To
+              th Pe
+              th La
+              th Su
+          tbody#kalenteriContent
 
-  
+        h1#header
+        #myList
+      //-div.middle
+        //-p Middle
+    div.right
+        #popup2
+          h1 Add new project
+          br
+          |         Project name: &nbsp;
+          input#projectName(type='text')
+          br
+          br
+          |         Project description: &nbsp;
+          input#projectDes(type='text')
+          br
+          br
+          input#addNewProjectButton(type='button', value='Add')
+
+        #popup
+          h1 Add new task
+          br
+          |         Project :  &nbsp;
+          select#selector
+          br
+          br
+          |         Task name: &nbsp;
+          input#taskName(type='text')
+          br
+          br
+          |         Task description: &nbsp;
+          input#taskDes(type='text')
+          br
+          br
+          input#addNewTaskButton(type='button', value='Add')
+
+        #tasktrashandnew
+
+          input#defineNewTaskButton(type='button', value='Add new task')
+          input#defineNewProjectButton(type='button', value='Add new project')
+
+          #-1.glyphicon.glyphicon-trash.trash(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+            #task_removed_popup  Task removed
+
+        #tasksSection
+          #task0
+            h3 Waiting
+            #0.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+          #task1
+            h3 Working
+            #1.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')
+          #task2
+            h3 Done
+            #2.taskboard(ondragover='event.preventDefault();', ondrop='dragStop(event)')

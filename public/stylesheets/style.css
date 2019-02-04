@@ -1,47 +1,234 @@
-body {
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'ZCOOL KuaiLe', cursive;
+  font-family: 'Muli', sans-serif;
+}
+
+ body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
+  background: linear-gradient(to top left,
+  white,rgb(97, 157, 209), #6593bb);
+
   flex-direction: column;
-}
+  min-height: 100vh;
+ }
 
-a {
+ a {
   color: #00B7FF;
-}
+ }
 
-.container{
+ .content {
   flex: 1 0 auto;
-}
+  margin-top: 20px;
+ }
 
-footer{
+ footer{
   flex-shrink: 0;
   border-top: 1px solid #eee;
-}
+ }
 
-.flex{
-  margin-top: 50px;
-  height: 300px;
+ .navbar{
+   margin: 0;
+ }
+
+ .flex{
+  /*margin-top: 50px;
+  height: 300px;*/
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap:
-}
+  flex-wrap: nowrap;
+ }
 
-.left{
-  width: 20%;
-  background-color: #f5f5f5;
-}
+ .space-between{
+  justify-content: space-between;
+ }
 
-.middle{
+ .left{
   width: 30%;
-}
+  margin: 30px;
+ }
 
-.right{
-  width: 50%;
+ /*.middle{
+  width: 30%;
+ }*/
+
+ .right{
+  width: 70%;
+  display: flex;
+  visibility:hidden;
+  flex-direction: column;
+ }
+
+ .right-bottom{
+  background-color: red;
+ }
+
+ /* JANNE */
+
+
+ .visibility {
+  visibility:visible !important;
+ }
+
+
+ body {
+  font-family: 'KoHo', sans-serif;
+ }
+
+ #kalenteri{
+  width: 60% auto;
+  table-layout: fixed;
+  background-color: rgb(211, 205, 205);
+  border-radius: 1em;
+  margin: 2em 0;
+  width: 100%;
+  text-align: center;
+  height: 150px;
+ }
+
+ th{
+  font-size: 0.7em;
+  text-align: center;
+  background: linear-gradient(#4B79A1, #283e51);
+
+  color: white;
+  padding: 0.3em;
+ }
+
+ tr:nth-child(even){
   background-color: #f5f5f5;
+ }
+
+ td{
+  font-size: 0.7em;
+  /*text-align: left;*/
+  padding: 0.3em;
+ }
+
+ .grey-month{
+  color: #aaa;
+ }
+
+ .Tablebold {
+  font-weight: #283e51;
+  font-size: 25px;
+  border: 2px solid #283e51;
+  background-color: rgb(67, 173, 223);
+ }
+
+ #calendar-right, #calendar-left, #kalenteriContent tr, #myList div, .taskboard div {
+  cursor: pointer;
+ }
+ #calendar-right, #calendar-left, #monthName {
+   font-size: 30px;
+ }
+ /* SATU */
+
+ .taskboard {
   display: flex;
   flex-direction: column;
+  border:solid;
+  width: 250px;
+  min-height: 250px;
+  padding: 20px;
+  margin:20px;
+  border-radius: 5px;
+  box-shadow: 10px 10px;
+  font-size: 20px;
+ }
+
+
+ #\30{
+  background-color: #FF69B4;
+ }
+
+ #\31{
+  background-color: #00BFFF;
+
+ }
+ #\32{
+  background-color:yellow;
+ }
+
+ #tasktrashandnew {
+  padding:20px;
+  margin:20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  text-align: center;
+  }
+  .trash {
+  padding-top:10px;
+  font-size: 45px;
+  background-color:rgb(202, 196, 196);
+  width: 350px;
+  height: 60px;
+  border-radius:30px;
+  box-shadow: 5px 5px;
+  border:solid 1px;
+  }
+
+
+
+ h3 {
+  display: inline;
+  text-align: center;
+ }
+
+ .trashvisibility {
+ visibility:visible !important;
+ }
+
+
+
+
+ #tasksSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  text-align: center;
+
+ }
+
+ .taskboard{
+  text-align: left;
+ }
+
+
+
+ #defineNewTaskButton, #addNewTaskButton, #defineNewProjectButton, #addNewProjectButton {
+  border-radius: 5px;
+  width: 150px;
+  height:60px;
+  background-color:lightcyan;
+  margin-right: 40px;
+  box-shadow: 5px 5px;
+  font-weight:bold;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 30px;
+  border:solid 1px;
+ }
+
+.text-center {
+  text-align: center;
 }
 
-.right-bottom{
-  background-color: red;
-}
+ #popup, #popup2, #task_removed_popup{
+  display:none;
+ }
+
+ .popup_content {
+  margin: 50px;
+  padding: 50px;
+  border: solid;
+  background: white;
+  border-radius: 5px;
+ }
+
+ .nav-header-lg {
+  background: linear-gradient(#4B79A1, #283e51);
+
+ }
